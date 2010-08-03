@@ -1,0 +1,40 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ILMerger.ExportOptionsWindow"
+        Title="IL Merger Tool" Height="280" Width="580" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Topmost="True" ShowInTaskbar="False" Closing="Window_Closing">
+	<Grid Margin="0">
+		<Grid x:Name="gdLayout">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="45" />
+				<RowDefinition Height="*" />
+				<RowDefinition Height="34" />
+			</Grid.RowDefinitions>
+			<Grid x:Name="gdHeader" Grid.Row="0" Grid.RowSpan="1" Background="#FF539BCB">
+				<StackPanel x:Name="spTools" HorizontalAlignment="Right" Margin="0,9,9,9" Orientation="Horizontal" d:LayoutOverrides="Height"/>
+				<TextBlock HorizontalAlignment="Left" Margin="12,6,6,6" Text="Configuration Export Wizard" VerticalAlignment="Center" FontSize="20" Foreground="#FFD8F3FF" />
+			</Grid>
+			<Border x:Name="bdContent" BorderThickness="0,1" BorderBrush="Black" Grid.Row="1" Grid.RowSpan="1">
+				<Grid x:Name="gdContent" Margin="0" d:LayoutOverrides="Width, Height" >
+					<StackPanel x:Name="spContent" Margin="10">
+						<TextBlock TextWrapping="Wrap" Text="Merge configuration file name:" FontSize="13.333" Margin="0" FontWeight="Bold" Foreground="#FF0054B1"/>
+						<DockPanel Height="21.96" Margin="2,3,2,0">
+							<Button x:Name="btnBrowseOutput" Content="Choose" Width="75" DockPanel.Dock="Right" VerticalAlignment="Top" Click="btnBrowseOutput_Click" />
+							<TextBox x:Name="tbOutput" TextWrapping="Wrap" d:LayoutOverrides="Height" Margin="0,0,3,0" BorderBrush="Black" Background="#FFE7F7FF" IsReadOnly="True" FontSize="13.333"/>
+						</DockPanel>
+						<TextBlock TextWrapping="Wrap" Text="Export Options:" FontSize="13.333" Margin="0,11,0,0" FontWeight="Bold" Foreground="#FF0054B1"/>
+                        <CheckBox IsChecked="{Binding UseRelativePathes, ElementName=window, Mode=TwoWay}" Content="Use relative pathes" Tag="DebugInfo" Margin="3,2,3,0" HorizontalAlignment="Left" FontSize="13.333" Name="cbRelativePathes" />
+						<TextBlock TextWrapping="Wrap" Margin="20,2,0,0"><Run Text="- Required for using as post build task (Example: ILMerger.exe /cfg &lt;Merge Configuration File&gt;"/><Run Language="hu-hu" Text=")"/><LineBreak/><Run Language="hu-hu" Text="- WARNING! If enabled, all pathes must be in the dictionary (or in on of the subdictionaries) of the configuration file to work."/></TextBlock>
+					</StackPanel>
+				</Grid>
+			</Border>
+			<Grid x:Name="gdFooter" Grid.Row="2" Grid.RowSpan="1" Background="#FF005289">
+				<TextBlock FontSize="12" Foreground="#FFA3F8FF" HorizontalAlignment="Left" Margin="6" Text="Based on Microsoft Research ILMerge." VerticalAlignment="Center" />
+				<StackPanel HorizontalAlignment="Right" Margin="0,0,6,0" Orientation="Horizontal" d:LayoutOverrides="Height">
+					<Button Content="Export Configuration" Margin="0,6" x:Name="btnExport" VerticalAlignment="Center" Padding="4,1" Click="btnExport_Click" IsDefault="True" />
+					<Button Content="Cancel" Margin="3,6,0,6" x:Name="btnCancel" VerticalAlignment="Center" Padding="4,1" Click="btnCancel_Click" IsCancel="True" />
+				</StackPanel>
+			</Grid>
+		</Grid>
+	</Grid>
+</Window>
